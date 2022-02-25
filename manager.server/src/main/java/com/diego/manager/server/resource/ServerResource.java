@@ -9,11 +9,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 import static com.diego.manager.server.enumeration.Status.SERVER_UP;
 import static java.time.LocalDateTime.now;
 import static java.util.Map.of;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.util.MimeTypeUtils.IMAGE_PNG_VALUE;
 
 @RestController
 @RequestMapping("/server-manager")
@@ -60,6 +64,39 @@ public class ServerResource {
                         .statusCode(CREATED.value())
                         .build()
         );
+    }
+
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<Response> serverById(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(now())
+                        .data(of("servers", serverService.getId(id)))
+                        .message("Server retrieved")
+                        .status(OK)
+                        .statusCode(OK.value())
+                        .build()
+        );
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Response> deleteByServer(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(now())
+                        .data(of("deleted", serverService.delete(id)))
+                        .message("Server retrieved")
+                        .status(OK)
+                        .statusCode(OK.value())
+                        .build()
+        );
+    }
+
+
+    @GetMapping(path = "/image/{fileName}", produces = IMAGE_PNG_VALUE)
+    public byte[] getServerImage(@PathVariable("fileName") String fileName) throws IOException{
+        return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "Downloads/img/" + fileName));
     }
 
 }
