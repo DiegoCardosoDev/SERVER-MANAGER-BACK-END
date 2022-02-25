@@ -26,6 +26,7 @@ public class ServerResource {
 
     private ServerServiceImpl serverService;
 
+    /*METODDO PARA RETRORNAR TODOS SERVIDORES*/
     @GetMapping("/list")
     public ResponseEntity<Response> getServer(){
         return ResponseEntity.ok(
@@ -38,6 +39,8 @@ public class ServerResource {
                         .build()
         );
     }
+
+    /*METODDO PARA PINGAR O SERVIDOR*/
 
     @GetMapping("/ping/{ipAndress}")
     public ResponseEntity<Response> pingServer(@PathVariable("ipAndress") String ipAndress) throws IOException {
@@ -53,6 +56,7 @@ public class ServerResource {
         );
     }
 
+    /*METODDO PARA SALVAR SERVIDOR*/
     @PostMapping("/save")
     public ResponseEntity<Response> saveServer(@RequestBody @Valid ServerModel server){
         return ResponseEntity.ok(
@@ -67,6 +71,7 @@ public class ServerResource {
     }
 
 
+    /*METODDO PARA RETRORNAR TODOS SERVIDORES POR ID*/
     @GetMapping("/get/{id}")
     public ResponseEntity<Response> serverById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(
@@ -80,6 +85,7 @@ public class ServerResource {
         );
     }
 
+    /*METODDO PARA DELETAR O SERVIDOR(ID)*/
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Response> deleteByServer(@PathVariable("id") Long id) {
         return ResponseEntity.ok(
@@ -94,6 +100,7 @@ public class ServerResource {
     }
 
 
+    /*METODDO PARA ATRIBUIR A IMAGE DO SERVIDOR*/
     @GetMapping(path = "/image/{fileName}", produces = IMAGE_PNG_VALUE)
     public byte[] getServerImage(@PathVariable("fileName") String fileName) throws IOException{
         return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "Downloads/img/" + fileName));
