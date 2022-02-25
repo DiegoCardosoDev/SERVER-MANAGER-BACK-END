@@ -7,6 +7,7 @@ import com.diego.manager.server.repositories.ServerRepository;
 import com.diego.manager.server.services.ServerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.io.IOException;
@@ -43,17 +44,21 @@ public class ServerSErviceImpl implements ServerService {
 
     @Override
     public Collection<ServerModel> list(int limit) {
-        return null;
+        log.info("all servers");
+        return serverRepository.findAll(PageRequest.of(0, limit)).toList();
     }
 
     @Override
     public ServerModel getId(Long id) {
-        return null;
+        log.info("server by id {}", id);
+        return serverRepository.findById(id).get();
     }
 
     @Override
     public ServerModel update(ServerModel server) {
-        return null;
+        log.info("update server: {}", server.getName());
+        return  serverRepository.save(server);
+
     }
 
     @Override
