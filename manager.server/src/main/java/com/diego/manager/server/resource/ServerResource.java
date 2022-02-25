@@ -11,7 +11,6 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-
 import static com.diego.manager.server.enumeration.Status.SERVER_UP;
 import static java.time.LocalDateTime.now;
 import static java.util.Map.of;
@@ -41,7 +40,6 @@ public class ServerResource {
     }
 
     /*METODDO PARA PINGAR O SERVIDOR*/
-
     @GetMapping("/ping/{ipAndress}")
     public ResponseEntity<Response> pingServer(@PathVariable("ipAndress") String ipAndress) throws IOException {
         ServerModel server = serverService.ping(ipAndress);
@@ -92,7 +90,7 @@ public class ServerResource {
                 Response.builder()
                         .timeStamp(now())
                         .data(of("deleted", serverService.delete(id)))
-                        .message("Server retrieved")
+                        .message("Server deleted")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()
