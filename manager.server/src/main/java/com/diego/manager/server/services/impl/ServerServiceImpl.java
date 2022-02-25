@@ -21,7 +21,7 @@ import java.util.Random;
 @Service
 @Transactional
 @Slf4j
-public class ServerSErviceImpl implements ServerService {
+public class ServerServiceImpl implements ServerService {
 
     private final  ServerRepository serverRepository;
 
