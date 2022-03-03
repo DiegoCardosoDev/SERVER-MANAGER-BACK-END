@@ -103,7 +103,7 @@ public class ServerController {
         );
     }
 
-    /*METODDO PARA ATRIBUIR A IMAGE DO SERVIDOR*/
+    /*METODDO PARA ATRIBUIR A IMAGE DO SERVIDOR(ALEATÓRIA)*/
     @GetMapping(path = "/image/{fileName}", produces = IMAGE_PNG_VALUE)
     public byte[] getServerImage(@PathVariable("fileName") String fileName) throws IOException{
         return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/Downloads/img/" + fileName));
