@@ -1,5 +1,5 @@
 package com.diego.serversmanager.service.implementation;
-
+/*ESSA CLASSE IMPLEMENTA OS METÓDOS DA INTERFACE SERVICE*/
 import com.diego.serversmanager.enumeration.Status;
 import com.diego.serversmanager.models.Server;
 import com.diego.serversmanager.repo.ServerRepository;
@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.net.InetAddress;
