@@ -12,7 +12,7 @@ import java.util.Collection;
 public interface ServerService {
 
     Server create(Server server);
-    Server ping(String ipAnddress) throws IOException;
+    Server ping(String ipAndress) throws IOException;
     Collection<Server> list(int limit);
     Server getId(Long id);
     Server update(Server server);

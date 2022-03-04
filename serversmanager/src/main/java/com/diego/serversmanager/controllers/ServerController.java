@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+
 import static com.diego.serversmanager.enumeration.Status.SERVER_UP;
 import static java.time.LocalDateTime.now;
 import static org.springframework.http.HttpStatus.CREATED;
@@ -23,7 +24,7 @@ import static org.springframework.util.MimeTypeUtils.IMAGE_PNG_VALUE;
 @Slf4j
 @AllArgsConstructor
 @RestController
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin("*")
 @RequestMapping("/server")
 
 public class ServerController {
@@ -67,8 +68,8 @@ public class ServerController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(Map.of("servers", server))
-                        .message(server.getStatus() == Status.SERVER_UP ? "Ping Success" : "Ping Failed")
+                        .data(Map.of("server", server))
+                        .message(server.getStatus() == SERVER_UP ? "Ping success" : "Ping failed")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()
@@ -78,12 +79,12 @@ public class ServerController {
 
     /*METODDO PARA CRIAR UM SERVIDOR*/
     @PostMapping("/save")
-    public ResponseEntity<Response> saveServer(@RequestBody @Valid Server server){
+    public ResponseEntity<Response> saveServer(@RequestBody @Valid Server server) {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(Map.of("servers", serverService.create(server)))
-                        .message("server created")
+                        .data(Map.of("server", serverService.create(server)))
+                        .message("Server created")
                         .status(CREATED)
                         .statusCode(CREATED.value())
                         .build()

@@ -15,6 +15,9 @@ import java.net.InetAddress;
 import java.util.Collection;
 import java.util.Random;
 
+import static com.diego.serversmanager.enumeration.Status.SERVER_DOWN;
+import static com.diego.serversmanager.enumeration.Status.SERVER_UP;
+
 @Service
 @Transactional
 @Slf4j
@@ -56,15 +59,17 @@ public class ServiceImpl implements ServerService {
     }
 
     /*PING SERVER*/
+
     @Override
     public Server ping(String ipAndress) throws IOException {
-        log.info("Ping server IP: {}", ipAndress);
-        Server serverModel = serverRepository.findByIpAndress(ipAndress);
+        log.info("Pinging server IP: {}", ipAndress);
+        Server server = serverRepository.findByIpAndress(ipAndress);
         InetAddress address = InetAddress.getByName(ipAndress);
-        serverModel.setStatus(address.isReachable(10000) ? Status.SERVER_UP : Status.SERVER_DOWN);
-        serverRepository.save(serverModel);
-        return serverModel;
+        server.setStatus(address.isReachable(10000) ? SERVER_UP : SERVER_DOWN);
+        serverRepository.save(server);
+        return server;
     }
+
 
     private String setServerImageUrl() {
         String[] imageNames = {"server1.png", "server2.png", "server3.png", "server4.png"};
