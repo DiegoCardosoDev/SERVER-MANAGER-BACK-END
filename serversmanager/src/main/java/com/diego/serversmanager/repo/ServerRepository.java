@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ServerRepository extends JpaRepository<Server, Long> {
 
-    Server findByIpAndress(String ipAndress);
+    Server findByIpAndress(String ipAnddress);
 }

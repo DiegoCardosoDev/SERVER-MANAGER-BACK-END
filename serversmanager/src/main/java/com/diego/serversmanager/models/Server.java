@@ -7,8 +7,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
-@Getter
-@Setter
+@Data
 @EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,7 +20,7 @@ public class Server {
     private Long id;
 
     @Column(unique = true)
-    @NotEmpty(message = "ip andress cannot be empty  or null")
+    @NotEmpty(message = "IP Address cannot be empty or null")
     private String ipAndress;
 
     private String name;

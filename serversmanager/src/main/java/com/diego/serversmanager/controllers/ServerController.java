@@ -1,6 +1,4 @@
 package com.diego.serversmanager.controllers;
-
-
 import com.diego.serversmanager.enumeration.Status;
 import com.diego.serversmanager.models.Response;
 import com.diego.serversmanager.models.Server;
@@ -15,7 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
+import static com.diego.serversmanager.enumeration.Status.SERVER_UP;
 import static java.time.LocalDateTime.now;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
