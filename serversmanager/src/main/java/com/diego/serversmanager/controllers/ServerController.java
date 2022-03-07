@@ -1,10 +1,10 @@
 package com.diego.serversmanager.controllers;
-import com.diego.serversmanager.enumeration.Status;
 import com.diego.serversmanager.models.Response;
 import com.diego.serversmanager.models.Server;
 import com.diego.serversmanager.service.implementation.ServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
@@ -22,15 +22,17 @@ import static org.springframework.util.MimeTypeUtils.IMAGE_PNG_VALUE;
 
 
 @Slf4j
-@AllArgsConstructor
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/server")
-
 public class ServerController {
 
     private final ServiceImpl serverService;
 
+    @Autowired
+    public ServerController(ServiceImpl serverService) {
+        this.serverService = serverService;
+    }
 
     /*METODDO PARA RETRORNAR TODOS SERVIDORES*/
     @GetMapping("/list")
@@ -40,7 +42,7 @@ public class ServerController {
                 Response.builder()
                         .timeStamp(now())
                         .data(Map.of("servers", serverService.list(30)))
-                        .message("servers retrieved")
+                        .message("servidores carregados!!!")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()

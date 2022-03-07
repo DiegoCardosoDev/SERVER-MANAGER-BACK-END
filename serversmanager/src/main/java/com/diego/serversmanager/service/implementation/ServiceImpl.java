@@ -1,11 +1,12 @@
 package com.diego.serversmanager.service.implementation;
 /*ESSA CLASSE IMPLEMENTA OS METÓDOS DA INTERFACE SERVICE*/
-import com.diego.serversmanager.enumeration.Status;
+
 import com.diego.serversmanager.models.Server;
 import com.diego.serversmanager.repo.ServerRepository;
 import com.diego.serversmanager.service.ServerService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -14,17 +15,21 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Collection;
 import java.util.Random;
-
 import static com.diego.serversmanager.enumeration.Status.SERVER_DOWN;
 import static com.diego.serversmanager.enumeration.Status.SERVER_UP;
 
 @Service
 @Transactional
 @Slf4j
-@AllArgsConstructor
 public class ServiceImpl implements ServerService {
 
     private final ServerRepository serverRepository;
+
+    @Autowired
+    public ServiceImpl(ServerRepository serverRepository) {
+        this.serverRepository = serverRepository;
+    }
+
 
     /*CREATE SERVER*/
     @Override
@@ -59,7 +64,6 @@ public class ServiceImpl implements ServerService {
     }
 
     /*PING SERVER*/
-
     @Override
     public Server ping(String ipAndress) throws IOException {
         log.info("Pinging server IP: {}", ipAndress);
@@ -71,10 +75,11 @@ public class ServiceImpl implements ServerService {
     }
 
 
+    /* ESSE METODO ATRIBUI UM AIMAGEM DE FORMA ALEATORIA AO SERVIDOR CRIADO*/
     private String setServerImageUrl() {
         String[] imageNames = {"server1.png", "server2.png", "server3.png",
                 "server4.png", "server5.png", "server6.png", "server7.png"};
-        log.info("seting image");
+        log.info("setting image by server");
         return ServletUriComponentsBuilder.fromCurrentContextPath().path("/server/image/" + imageNames[new Random()
                 .nextInt(7)]).toUriString();
     }
