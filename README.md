@@ -13,6 +13,9 @@
 ![ezgif com-gif-maker](https://user-images.githubusercontent.com/83510729/156898781-96dcab1c-789d-4849-8a80-4fc9546c1724.gif)
 
 
+###  APP NA NUVEM CLIQUE PARA TESTAR:
+[https://servers-manager-app.herokuapp.com/swagger-ui/index.html](https://servers-manager-app.herokuapp.com/swagger-ui/index.html)
+
 ###  link front end do projeto:
  [https://github.com/DiegoCardosoDev/SERVER-MANAGER-FRONT-END](https://github.com/DiegoCardosoDev/SERVER-MANAGER-FRONT-END)  
 
