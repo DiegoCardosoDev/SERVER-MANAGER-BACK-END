@@ -14,7 +14,7 @@ import java.util.HashSet;
 
 /*DOCUMENTAÇÃO DA API*/
 
-/*http://localhost:8080/swagger-ui/index.html*/
+/*https://servers-manager-app.herokuapp.com/swagger-ui/index.html*/
 @Configuration
 @EnableSwagger2
 @EnableWebMvc
