@@ -50,7 +50,7 @@ public class SwaggerConfig {
 
         ApiInfoBuilder apiInfoBuilder = new ApiInfoBuilder();
 
-        apiInfoBuilder.title("Servers Manager Api");
+        apiInfoBuilder.title("Servers Manager Api (gerenciador de servidores");
         apiInfoBuilder.description("gerenciador de servidores");
         apiInfoBuilder.version("1.0");
         apiInfoBuilder.termsOfServiceUrl("Termo de uso: Open Source");
