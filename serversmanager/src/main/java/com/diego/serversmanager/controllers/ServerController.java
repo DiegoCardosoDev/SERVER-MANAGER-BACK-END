@@ -52,7 +52,7 @@ public class ServerController {
     }
 
     /*METODDO PARA RETRORNAR TODOS SERVIDORES POR ID*/
-    @ApiOperation(value = "metodo para obter um servidor por id")
+    @ApiOperation(value = "metodo para obter um servidor por id, insira um id existente")
     @GetMapping("/get/{id}")
     public ResponseEntity<Response> serverById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(
@@ -67,7 +67,8 @@ public class ServerController {
     }
 
     /*METODDO PARA PINGAR O SERVIDOR*/
-    @ApiOperation(value = "metodo para realizar o ping do servidor")
+    @ApiOperation(value = "metodo para realizar o ping do servidor, o ip deve existir ver ativo e o servidor estar" +
+            "no status UP")
     @GetMapping("/ping/{ipAndress}")
     public ResponseEntity<Response> pingServer(@PathVariable("ipAndress") String ipAndress) throws IOException {
         Server server = serverService.ping(ipAndress);
@@ -115,7 +116,7 @@ public class ServerController {
 
     /*METODDO PARA ATRIBUIR A IMAGE DO SERVIDOR(ALEATÓRIA)*/
     /*ATENÇÃO AO PATH ONDE ESTÁ AS IMAGENS PARA FUNCIONAR */
-    @ApiOperation(value = "esse metodo atribui uma imagem aeatoria ao servidor")
+    @ApiOperation(value = "esse metodo atribui uma imagem aleatoria ao servidor automaticamente, ao criar o servidor")
     @GetMapping(path = "/image/{fileName}", produces = IMAGE_PNG_VALUE)
     public byte[] getServerImage(@PathVariable("fileName") String fileName) throws IOException{
         return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "/Downloads/img/" + fileName));
