@@ -70,7 +70,7 @@ public class ServerController {
     /*METODDO PARA PINGAR O SERVIDOR*/
     @ApiOperation(value = "metodo para realizar o ping do servidor, o ip deve existir e está ativo e estar" +
             "exemplo:  192.,168.15.1" +
-            "no status UP")
+            "no status SERVER_UP")
     @GetMapping("/ping/{ipAndress}")
     public ResponseEntity<Response> pingServer(@PathVariable("ipAndress") String ipAndress) throws IOException {
         Server server = serverService.ping(ipAndress);
