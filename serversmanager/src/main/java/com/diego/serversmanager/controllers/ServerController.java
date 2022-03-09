@@ -24,7 +24,7 @@ import static org.springframework.util.MimeTypeUtils.IMAGE_PNG_VALUE;
 @Slf4j
 @RestController
 @CrossOrigin("*")
-@Api(value = "api servers managers")
+@Api(value = "api servers manager")
 @RequestMapping("/server")
 public class ServerController {
 
@@ -36,7 +36,7 @@ public class ServerController {
     }
 
     /*METODDO PARA RETRORNAR TODOS SERVIDORES*/
-    @ApiOperation(value = "metodo para listar todos servidores cadastrados")
+    @ApiOperation(value = "metodo para listar todos servidores cadastrados.")
     @GetMapping("/list")
     public ResponseEntity<Response> getServer() throws InterruptedException {
         TimeUnit.SECONDS.sleep(3);
@@ -52,7 +52,8 @@ public class ServerController {
     }
 
     /*METODDO PARA RETRORNAR TODOS SERVIDORES POR ID*/
-    @ApiOperation(value = "metodo para obter um servidor por id, insira um id existente")
+    @ApiOperation(value = "metodo para obter um servidor por id, insira um id existente." +
+            "exemplo: 1")
     @GetMapping("/get/{id}")
     public ResponseEntity<Response> serverById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(
@@ -67,7 +68,8 @@ public class ServerController {
     }
 
     /*METODDO PARA PINGAR O SERVIDOR*/
-    @ApiOperation(value = "metodo para realizar o ping do servidor, o ip deve existir ver ativo e o servidor estar" +
+    @ApiOperation(value = "metodo para realizar o ping do servidor, o ip deve existir e está ativo e estar" +
+            "exemplo:  192.,168.15.1" +
             "no status UP")
     @GetMapping("/ping/{ipAndress}")
     public ResponseEntity<Response> pingServer(@PathVariable("ipAndress") String ipAndress) throws IOException {
@@ -85,7 +87,7 @@ public class ServerController {
 
 
     /*METODDO PARA CRIAR UM SERVIDOR*/
-    @ApiOperation(value = "metodo para cadastrar um servidor")
+    @ApiOperation(value = "metodo para cadastrar um servidor passando os parametros.")
     @PostMapping("/save")
     public ResponseEntity<Response> saveServer(@RequestBody @Valid Server server) {
         return ResponseEntity.ok(
@@ -100,7 +102,7 @@ public class ServerController {
     }
 
     /*METODDO PARA DELETAR O SERVIDOR(ID)*/
-    @ApiOperation(value = "metodo para deletar um servidor por id")
+    @ApiOperation(value = "metodo para deletar um servidor por id, esemplo: id: 1")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Response> deleteByServer(@PathVariable("id") Long id) {
         return ResponseEntity.ok(
